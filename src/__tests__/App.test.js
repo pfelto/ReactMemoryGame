@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import App from '../App';
 
 test('renders learn react link', () => {
-  render(<App />);
-  const startButton = screen.getByRole('button');
-  expect(startButton).toBeInTheDocument();
+    render(<App />);
+    const startButton = screen.getByRole('button');
+    expect(startButton).toBeInTheDocument();
 });
