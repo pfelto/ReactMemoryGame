@@ -6,7 +6,11 @@ export default function CellGrid({ selectedCells, secondsLeft }) {
     const [guessedCells, setGuessedCells] = useState([]);
 
     function cellStatus(number) {
-        if (selectedCells.includes(number) && !guessedCells.includes(number)) {
+        if (
+            selectedCells.includes(number) &&
+            !guessedCells.includes(number) &&
+            secondsLeft > 0
+        ) {
             return CellColors.selected;
         }
         if (selectedCells.includes(number) && guessedCells.includes(number)) {
@@ -34,6 +38,7 @@ export default function CellGrid({ selectedCells, secondsLeft }) {
                     number={5 * r + col}
                     cellStatus={(number) => cellStatus(number)}
                     handleClick={(number) => handleClick(number)}
+                    secondsLeft={secondsLeft}
                 />
             );
         }

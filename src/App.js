@@ -53,6 +53,7 @@ function App() {
                 </div>
                 {gameStart ? (
                     <CellGrid
+                        key={1}
                         selectedCells={selectedCells}
                         secondsLeft={secondsLeft}
                     />
@@ -60,13 +61,20 @@ function App() {
                     initBoard()
                 )}
                 <div className="row my-1">
-                    <button className="col" onClick={() => setGameStart(true)}>
-                        Start
-                    </button>
+                    {!gameStart ? (
+                        <button
+                            className="col"
+                            onClick={() => setGameStart(true)}
+                        >
+                            start
+                        </button>
+                    ) : null}
                     <div className="col text-end">
                         {!gameStart
                             ? 'Press Start to play Memory Match'
-                            : secondsLeft}
+                            : secondsLeft > 0
+                            ? secondsLeft
+                            : 'Recall the cells that were blue'}
                     </div>
                 </div>
             </div>
