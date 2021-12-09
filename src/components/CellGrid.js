@@ -1,9 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cell from './Cell';
 import { CellColors } from '../services/CellColors';
 
-export default function CellGrid({ selectedCells, secondsLeft }) {
+export default function CellGrid({ secondsLeft }) {
+    //State
+    const [selectedCells, setSelectedCells] = useState([]);
     const [guessedCells, setGuessedCells] = useState([]);
+
+    useEffect(() => {
+        setSelectedCells([0, 1, 2, 3, 4, 5]);
+    }, []);
+
+    //derived State
+    const wrongNums = guessedCells.filter(
+        (cell) => !selectedCells.includes(cell)
+    );
+    const gameStatus = selectedCells.every((cell) =>
+        guessedCells.includes(cell)
+    )
+        ? 'Winner'
+        : wrongNums.length === 3
+        ? 'Loser'
+        : secondsLeft > 0
+        ? 'Standby'
+        : 'Active';
 
     function cellStatus(number) {
         if (
@@ -24,6 +44,7 @@ export default function CellGrid({ selectedCells, secondsLeft }) {
     }
 
     function handleClick(number) {
+        if (gameStatus !== 'Active') return;
         setGuessedCells((guessCells) => [...guessCells, number]);
     }
 

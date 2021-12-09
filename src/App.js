@@ -2,13 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CellGrid from './components/CellGrid';
 
 function App() {
-    const [selectedCells, setSelectedCells] = useState([]);
     const [gameStart, setGameStart] = useState(false);
     const [secondsLeft, setSecondsLeft] = useState(3);
-
-    useEffect(() => {
-        setSelectedCells([0, 1, 2, 3, 4, 5]);
-    }, []);
 
     useEffect(() => {
         if (secondsLeft > 0 && gameStart) {
@@ -52,11 +47,7 @@ function App() {
                     </div>
                 </div>
                 {gameStart ? (
-                    <CellGrid
-                        key={1}
-                        selectedCells={selectedCells}
-                        secondsLeft={secondsLeft}
-                    />
+                    <CellGrid key={1} secondsLeft={secondsLeft} />
                 ) : (
                     initBoard()
                 )}
