@@ -18,6 +18,7 @@ function App() {
     const wrongNums = guessedCells.filter(
         (cell) => !selectedCells.includes(cell)
     );
+
     const gameStatus =
         selectedCells.every((cell) => guessedCells.includes(cell)) &&
         secondsLeft === 0
@@ -54,6 +55,8 @@ function App() {
         if (gameStatus !== 'Active') return;
         setGuessedCells((guessedCells) => [...guessedCells, number]);
     }
+
+    //render
 
     return (
         <div className="App">
