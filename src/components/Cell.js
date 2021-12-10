@@ -7,6 +7,7 @@ export default function Cell({ number, cellStatus, handleClick }) {
                 handleClick(number);
             }}
             style={{ backgroundColor: cellStatus(number) }}
+            data-testid="cell"
             className="col p-4 box"
         ></button>
     );
